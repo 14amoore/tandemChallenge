@@ -1,6 +1,24 @@
 ## This is my submission for the Tandem Code Challenge
 
-I created this project using Create React App and React Bootstrap.\
+I created this project using Create React App and React Bootstrap.
+
+## The assumptions given in the prompt are as follows:
+
+- A round of trivia has 10 Questions
+- All questions are multiple-choice questions
+- Your score does not need to update in real time
+- Results can update on form submit, button click, or any interaction you choose
+- We will provide you with the trivia data such as the questions, correct and incorrect answers via a
+  JSON file.
+
+  ## These are the criteria for acceptance:
+
+- A user can view questions.
+- Questions with their multiple choice options must be displayed one at a time.
+- Questions should not repeat in a round.
+- A user can select only 1 answer out of the 4 possible answers.
+- The correct answer must be revealed after a user has submitted their answer
+- A user can see the score they received at the end of the round
 
 ## To run the code:
 
@@ -22,12 +40,6 @@ You will also see any lint errors in the console.
 Launches the test runner in the interactive watch mode.\
 See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
 
-#### `npm run build`
+#### Future improvements:
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+- I would like to randomize where the correct answer appears when the questions are rendered. Right now the correct answer is always the second answer.

@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import Correct from './Correct';
 import Container from 'react-bootstrap/Container';
 import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
@@ -17,6 +18,7 @@ class Question extends Component {
       score: 0,
       questionNumber: 0,
       question: 0,
+      correctAnswer: null,
       askedQs: [],
     };
     this.handleChange = this.handleChange.bind(this);
@@ -33,6 +35,7 @@ class Question extends Component {
     const randomQ = this.getRandomQuestion(0, trivia.length - 1);
     this.setState(() => ({
       question: randomQ,
+      correctAnswer: trivia[randomQ].correct,
     }));
   }
 
@@ -41,6 +44,9 @@ class Question extends Component {
     const itemValue = e.target.value;
     // console.log(itemName, itemValue);
     this.setState({ [itemName]: itemValue });
+    // if (this.state.correctAnswer === this.state.answer) {
+    //   this.setState(() => ({ rightOrWrong: true }));
+    // }
   }
 
   checkQuestions() {
@@ -68,27 +74,30 @@ class Question extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const correctAnswer = trivia[this.state.question].correct;
+    // const correctAnswer = trivia[this.state.question].correct;
     // console.log(correctAnswer);
     const userAnswer = this.state.answer;
     const randomQ = this.getRandomQuestion(0, trivia.length - 1);
-    if (userAnswer === correctAnswer) {
-      alert(`${correctAnswer} is correct.`);
+    if (userAnswer === this.state.correctAnswer) {
+      // alert(`${correctAnswer} is correct!`);
       this.setState((state) => ({
         score: (state.score += 1),
         questionNumber: (state.questionNumber += 1),
         question: randomQ,
         askedQs: [...state.askedQs, state.question],
         answer: '',
+        correctAnswer: trivia[randomQ].correct,
       }));
+      // alert(`${this.state.correctAnswer} is correct!`);
     } else {
-      alert(`The correct answer was: ${correctAnswer}`);
       this.setState((state) => ({
         questionNumber: (state.questionNumber += 1),
         question: randomQ,
         askedQs: [...state.askedQs, state.question],
         answer: '',
+        correctAnswer: trivia[randomQ].correct,
       }));
+      // alert(`The correct answer was: ${this.state.correctAnswer}`);
     }
   }
 
@@ -100,17 +109,19 @@ class Question extends Component {
     const questNum = this.state.questionNumber;
     const userQuest = this.state.question;
     const dispQuestion = trivia[userQuest].question;
-    // console.log(dispQuestion);
+
     return (
       <Container fluid>
         <Row>
           <Col>
-            <h4>Your score is: {this.state.score}</h4>
+            <h3 className="mt-2">Your score is: {this.state.score}</h3>
             {questNum < 10 ? (
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label>
-                    Question {questNum + 1}: {dispQuestion}
+                    <h4>
+                      Question {questNum + 1}: {dispQuestion}
+                    </h4>
                   </Form.Label>
                   <Form.Control
                     as="select"
@@ -125,10 +136,14 @@ class Question extends Component {
                     <option>{trivia[userQuest].incorrect[2]}</option>
                   </Form.Control>
                 </Form.Group>
-                <Button type="submit">Submit Answer</Button>
+                {this.state.answer !== '' ? (
+                  <Correct
+                    answer={this.state.correctAnswer}
+                    userAnswer={this.state.answer}
+                  />
+                ) : null}
               </Form>
             ) : (
-              //   <h1>Game Over</h1>
               <Button onClick={this.restart}>Click to restart</Button>
             )}
           </Col>

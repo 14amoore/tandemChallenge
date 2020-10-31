@@ -4,9 +4,6 @@ import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
 class App extends Component {
-  // constructor() {
-  //   super();
-  // }
   render() {
     return (
       <div>
