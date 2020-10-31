@@ -3,8 +3,6 @@ import Question from './Question';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.css';
 
-import trivia from './Apprentice_TandemFor400_Data.json';
-
 class App extends Component {
   // constructor() {
   //   super();
@@ -12,7 +10,7 @@ class App extends Component {
   render() {
     return (
       <div>
-        <Question trivia={trivia} />
+        <Question />
       </div>
     );
   }

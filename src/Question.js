@@ -4,13 +4,15 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import Form from 'react-bootstrap/Form';
 import Button from 'react-bootstrap/Button';
-
 import trivia from './Apprentice_TandemFor400_Data.json';
 
 class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
+      getRandomQuestion(min, max) {
+        return Math.floor(Math.random() * (max - min + 1) + min);
+      },
       answer: '',
       score: 0,
       questionNumber: 0,
@@ -28,11 +30,10 @@ class Question extends Component {
   }
 
   componentDidMount() {
-    const randomQ = this.getRandomQuestion(0, this.props.trivia.length);
-    console.log(trivia);
-    this.setState({
+    const randomQ = this.getRandomQuestion(0, trivia.length - 1);
+    this.setState(() => ({
       question: randomQ,
-    });
+    }));
   }
 
   handleChange(e) {
@@ -53,7 +54,7 @@ class Question extends Component {
   }
 
   componentDidUpdate() {
-    const randomQ = this.getRandomQuestion(0, this.props.trivia.length);
+    const randomQ = this.getRandomQuestion(0, trivia.length - 1);
     for (let q of this.state.askedQs) {
       //   console.log(this.state.question);
       if (this.state.question === q) {
@@ -67,10 +68,10 @@ class Question extends Component {
 
   handleSubmit(e) {
     e.preventDefault();
-    const correctAnswer = this.props.trivia[this.state.question].correct;
+    const correctAnswer = trivia[this.state.question].correct;
     // console.log(correctAnswer);
     const userAnswer = this.state.answer;
-    const randomQ = this.getRandomQuestion(0, this.props.trivia.length);
+    const randomQ = this.getRandomQuestion(0, trivia.length - 1);
     if (userAnswer === correctAnswer) {
       alert(`${correctAnswer} is correct.`);
       this.setState((state) => ({
@@ -96,11 +97,10 @@ class Question extends Component {
   }
 
   render() {
-    const myTrivia = this.props.trivia;
     const questNum = this.state.questionNumber;
     const userQuest = this.state.question;
-    // console.log(userQuest);
-    // console.log(myTrivia[userQuest]);
+    const dispQuestion = trivia[userQuest].question;
+    // console.log(dispQuestion);
     return (
       <Container fluid>
         <Row>
@@ -110,7 +110,7 @@ class Question extends Component {
               <Form onSubmit={this.handleSubmit}>
                 <Form.Group>
                   <Form.Label>
-                    Question {questNum + 1}: {myTrivia[userQuest].question}
+                    Question {questNum + 1}: {dispQuestion}
                   </Form.Label>
                   <Form.Control
                     as="select"
@@ -119,10 +119,10 @@ class Question extends Component {
                     onChange={this.handleChange}
                   >
                     <option>Choose one of the four answers</option>
-                    <option>{myTrivia[userQuest].incorrect[0]}</option>
-                    <option>{myTrivia[userQuest].correct}</option>
-                    <option>{myTrivia[userQuest].incorrect[1]}</option>
-                    <option>{myTrivia[userQuest].incorrect[2]}</option>
+                    <option>{trivia[userQuest].incorrect[0]}</option>
+                    <option>{trivia[userQuest].correct}</option>
+                    <option>{trivia[userQuest].incorrect[1]}</option>
+                    <option>{trivia[userQuest].incorrect[2]}</option>
                   </Form.Control>
                 </Form.Group>
                 <Button type="submit">Submit Answer</Button>
