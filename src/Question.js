@@ -66,6 +66,7 @@ class Question extends Component {
       if (this.state.question === q) {
         this.setState(() => ({
           question: randomQ,
+          correctAnswer: trivia[randomQ].correct,
         }));
       }
       //   console.log(q);
