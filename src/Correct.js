@@ -24,7 +24,7 @@ function Correct(props) {
       ) : (
         <Alert show={show} variant="danger">
           <Alert.Heading>Sorry that's not correct!</Alert.Heading>
-          <p>{props.answer} was correct.</p>
+          <p>{props.answer} was the correct answer.</p>
           <hr />
           <div className="d-flex justify-content-end">
             <Button

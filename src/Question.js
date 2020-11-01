@@ -11,9 +11,9 @@ class Question extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      getRandomQuestion(min, max) {
-        return Math.floor(Math.random() * (max - min + 1) + min);
-      },
+      // getRandomQuestion(min, max) {
+      //   return Math.floor(Math.random() * (max - min + 1) + min);
+      // },
       answer: '',
       score: 0,
       questionNumber: 0,
@@ -125,16 +125,27 @@ class Question extends Component {
                     </h4>
                   </Form.Label>
                   <Form.Control
+                    data-testid="select-one"
                     as="select"
                     name="answer"
                     value={this.state.answer}
                     onChange={this.handleChange}
                   >
-                    <option>Choose one of the four answers</option>
-                    <option>{trivia[userQuest].incorrect[0]}</option>
-                    <option>{trivia[userQuest].correct}</option>
-                    <option>{trivia[userQuest].incorrect[1]}</option>
-                    <option>{trivia[userQuest].incorrect[2]}</option>
+                    <option data-testid="prompt">
+                      Choose one of the four answers
+                    </option>
+                    <option data-testid="inc1">
+                      {trivia[userQuest].incorrect[0]}
+                    </option>
+                    <option data-testid="correct">
+                      {trivia[userQuest].correct}
+                    </option>
+                    <option data-testid="inc2">
+                      {trivia[userQuest].incorrect[1]}
+                    </option>
+                    <option data-testid="inc3">
+                      {trivia[userQuest].incorrect[2]}
+                    </option>
                   </Form.Control>
                 </Form.Group>
                 {this.state.answer !== '' ? (

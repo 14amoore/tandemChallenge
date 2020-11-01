@@ -43,3 +43,10 @@ See the section about [running tests](https://facebook.github.io/create-react-ap
 #### Future improvements:
 
 - I would like to randomize where the correct answer appears when the questions are rendered. Right now the correct answer is always the second answer.
+- It would be really fun to add a start page where users can sign in with a leaderboard of the top ten scores.
+- Adding more animation would make the experience of playing the game more engaging.
+- I have some tests written but I am quite new to testing and there is a lot of room for improvement in that area.
+
+#### Known issues:
+
+- There are no known issues with this as of now. BUT React does throw a warning because there is an issue with React Bootstrap when the answer notification is dismissed. This is documented here https://github.com/react-bootstrap/react-bootstrap/issues/5075, and to my knowledge does hinder the performance of the app.
