@@ -22,10 +22,10 @@ I created this project using Create React App and React Bootstrap.
 
 ## To run the code:
 
-Clone this repo.\
-Once you've cloned the repo navigate to it using the command line.\
-Now that you're in the local copy of the repo type "npm i" to download the dependencies.\
-Finally, when all of the dependencies are downloaded type "npm run start" and you'll be able to practice your trivia skills!
+1. Clone this repo.
+2. Once you've cloned the repo navigate to it using the command line.
+3. Now that you're in the local copy of the repo type "npm i" to download the dependencies.
+4. Finally, when all of the dependencies are downloaded type "npm run start" and you'll be able to practice your trivia skills!
 
 #### `npm run start`
 
